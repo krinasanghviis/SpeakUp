@@ -1,0 +1,307 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--ink:#1A1A1A;--stone:#F7F6F3;--em:#37996B;--em-light:#E8F5EE;--em-mid:#9FE1CB;--grey:#6B6B6B;--border:#E9E9E7;--white:#fff;--warn:#BA7517;--warn-bg:#FAEEDA;}
+body{font-family:'DM Sans',Arial,sans-serif;color:var(--ink);background:transparent;}
+.wrap{max-width:720px;margin:0 auto;padding:0 1rem 3rem;}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 0 1.1rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+.kangrow{display:flex;flex-direction:column;gap:2px;}
+.kangrow-logo{display:flex;align-items:baseline;gap:0px;}
+.kangrow-logo .k{font-family:'DM Serif Display',Georgia,serif;font-size:28px;font-weight:400;color:var(--ink);line-height:1;}
+.kangrow-logo .g{font-family:'DM Serif Display',Georgia,serif;font-size:28px;font-weight:400;color:var(--em);line-height:1;}
+.kangrow-tag{font-size:10px;color:var(--grey);letter-spacing:0.08em;text-transform:uppercase;}
+.speakup-badge{text-align:right;}
+.speakup-badge .name{font-size:20px;font-weight:600;color:var(--ink);letter-spacing:-0.4px;line-height:1;}
+.speakup-badge .sub{font-size:11px;color:var(--grey);margin-top:3px;}
+
+.steps-bar{display:flex;margin-bottom:1.5rem;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.step-pill{flex:1;padding:9px 4px;text-align:center;font-size:11px;font-weight:500;color:var(--grey);background:var(--stone);border-right:1px solid var(--border);transition:all 0.2s;}
+.step-pill:last-child{border-right:none;}
+.step-pill.active{background:var(--em);color:#fff;}
+.step-pill.done{background:var(--em-light);color:var(--em);}
+
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.25rem;margin-bottom:1rem;}
+.card-label{font-size:10px;font-weight:600;color:var(--grey);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;}
+label{font-size:13px;color:var(--grey);display:block;margin-bottom:5px;}
+input,select,textarea{width:100%;font-size:14px;padding:9px 12px;border:1px solid var(--border);border-radius:8px;background:var(--white);color:var(--ink);font-family:'DM Sans',Arial,sans-serif;outline:none;transition:border 0.15s;}
+input:focus,select:focus,textarea:focus{border-color:var(--em);}
+textarea{resize:vertical;min-height:150px;line-height:1.65;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.g1{margin-bottom:12px;}
+.wc{font-size:12px;color:var(--grey);margin-top:5px;}
+.wc.warn{color:var(--warn);}
+.wc.ok{color:var(--em);}
+
+.hint-box{background:var(--em-light);border-left:3px solid var(--em);border-radius:0 8px 8px 0;padding:10px 14px;font-size:13px;color:#0F6E56;line-height:1.6;margin-bottom:1rem;}
+.warn-box{background:var(--warn-bg);border-left:3px solid var(--warn);border-radius:0 8px 8px 0;padding:10px 14px;font-size:13px;color:#85500B;line-height:1.6;margin-bottom:1rem;}
+
+.btn-primary{background:var(--em);color:#fff;border:none;border-radius:9px;padding:12px 0;font-size:14px;font-weight:600;cursor:pointer;width:100%;font-family:'DM Sans',Arial,sans-serif;transition:background 0.15s;margin-top:4px;}
+.btn-primary:hover{background:#2e7d59;}
+.btn-outline{background:var(--white);color:var(--ink);border:1px solid var(--border);border-radius:9px;padding:10px 0;font-size:13px;font-weight:500;cursor:pointer;width:100%;font-family:'DM Sans',Arial,sans-serif;transition:border 0.15s;margin-top:8px;}
+.btn-outline:hover{border-color:var(--em);color:var(--em);}
+
+.page{display:none;}
+.page.active{display:block;}
+
+.prompt-wrap{position:relative;margin-bottom:8px;}
+.prompt-box{background:var(--stone);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem 1rem;font-size:12.5px;line-height:1.75;color:var(--ink);font-family:'DM Sans',Arial,sans-serif;white-space:pre-wrap;max-height:280px;overflow-y:auto;}
+.copy-btn{display:block;width:100%;margin-top:8px;background:var(--em);color:#fff;border:none;border-radius:8px;padding:10px 0;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',Arial,sans-serif;transition:background 0.15s;}
+.copy-btn:hover{background:#2e7d59;}
+.copy-btn.copied{background:#0F6E56;}
+
+.tool-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:10px 0 12px;}
+.tool-btn{border:1px solid var(--border);border-radius:10px;padding:14px 8px;text-align:center;cursor:pointer;background:var(--white);transition:all 0.15s;text-decoration:none;display:block;}
+.tool-btn:hover{border-color:var(--em);transform:translateY(-2px);}
+.tool-btn .t-icon{font-size:20px;margin-bottom:4px;}
+.tool-btn .t-name{font-size:13px;font-weight:600;color:var(--ink);}
+.tool-btn .t-sub{font-size:11px;color:var(--grey);margin-top:1px;}
+
+.flow-steps{margin-bottom:1rem;}
+.flow-step{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px;}
+.fsn{min-width:24px;height:24px;border-radius:50%;background:var(--em);color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.fst{font-size:13px;line-height:1.6;color:var(--ink);}
+.fst span{color:var(--grey);}
+
+.tag-row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0;}
+.tag{font-size:11px;background:var(--em-light);color:var(--em);padding:3px 9px;border-radius:20px;font-weight:500;}
+
+.cta-card{background:var(--em-light);border:1px solid var(--em-mid);border-radius:14px;padding:1.1rem 1.25rem;margin-top:1.25rem;display:flex;gap:14px;align-items:flex-start;}
+.cta-av{width:44px;height:44px;border-radius:50%;background:var(--em);color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'DM Serif Display',serif;}
+.cta-body p{font-size:13px;line-height:1.65;color:#0F6E56;}
+.cta-link{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:12px;font-weight:600;color:var(--em);text-decoration:none;border-bottom:1px solid var(--em-mid);padding-bottom:1px;}
+.cta-link:hover{color:#0F6E56;}
+
+.footer{text-align:center;margin-top:2rem;padding-top:1.25rem;border-top:1px solid var(--border);}
+.footer-logo{display:inline-flex;align-items:baseline;}
+.footer-logo .fk{font-family:'DM Serif Display',Georgia,serif;font-size:14px;color:var(--ink);}
+.footer-logo .fg{font-family:'DM Serif Display',Georgia,serif;font-size:14px;color:var(--em);}
+.footer p{font-size:11px;color:#c0bfbc;margin-top:3px;}
+.footer a{color:var(--em-mid);text-decoration:none;}
+.footer a:hover{color:var(--em);}
+
+@media(max-width:500px){.g2,.tool-grid{grid-template-columns:1fr;}.topbar{flex-direction:column;align-items:flex-start;gap:8px;}.speakup-badge{text-align:left;}}
+</style>
+
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="kangrow">
+      <div class="kangrow-logo"><span class="k">kan</span><span class="g">.grow</span></div>
+      <div class="kangrow-tag">Build systems. Buy back time.</div>
+    </div>
+    <div class="speakup-badge">
+      <div class="name">SpeakUp</div>
+      <div class="sub">Speech scoring tool</div>
+    </div>
+  </div>
+
+  <div class="steps-bar">
+    <div class="step-pill active" id="pill-1">1 · Your speech</div>
+    <div class="step-pill" id="pill-2">2 · Get prompt</div>
+    <div class="step-pill" id="pill-3">3 · Paste & score</div>
+    <div class="step-pill" id="pill-4">4 · Improve</div>
+  </div>
+
+  <div id="page-1" class="page active">
+    <div class="hint-box"><b>How SpeakUp works:</b> Fill in your speech and a few details below. We'll generate a ready-made scoring prompt — you paste it into Claude, ChatGPT or Gemini and get scores across 15 dimensions, instantly.</div>
+
+    <div class="card">
+      <div class="card-label">Your speech</div>
+      <textarea id="txt" placeholder="Paste your full speech here..." oninput="wc()"></textarea>
+      <div class="wc" id="wcl">0 words · 0 min estimated</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Context</div>
+      <div class="g2">
+        <div>
+          <label>Speech type</label>
+          <select id="stype">
+            <option value="">Select type...</option>
+            <option>Keynote</option><option>TED-style talk</option><option>Sales pitch</option>
+            <option>Wedding / event toast</option><option>Eulogy</option>
+            <option>Corporate presentation</option><option>Commencement address</option>
+            <option>Award acceptance</option><option>Debate</option><option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label>Target duration (minutes)</label>
+          <input type="number" id="dur" placeholder="e.g. 5" min="1" max="120" oninput="wc()" />
+        </div>
+      </div>
+      <div class="g2">
+        <div><label>Audience</label><input id="aud" placeholder="e.g. startup founders" /></div>
+        <div><label>Purpose</label><input id="pur" placeholder="e.g. inspire, persuade" /></div>
+      </div>
+      <div class="g1">
+        <label>Tone <span style="font-size:11px;color:#aaa;">— describe freely</span></label>
+        <input id="ton" placeholder="e.g. storytelling, humorous, motivational..." />
+      </div>
+    </div>
+
+    <button class="btn-primary" onclick="generate()">Generate my scoring prompt →</button>
+
+    <div class="cta-card">
+      <div class="cta-av">K</div>
+      <div class="cta-body">
+        <p>Want a real human to review your speech? <b>Krina helps speakers find their story, sharpen their structure and own the stage.</b> Reach out — no pitch, just a conversation.</p>
+        <a class="cta-link" href="https://www.linkedin.com/in/krina-kalpesh-sanghvi" target="_blank">Connect with Krina on LinkedIn ↗</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-logo"><span class="fk">kan</span><span class="fg">.grow</span></div>
+      <p>Created by <a href="https://www.linkedin.com/in/krina-kalpesh-sanghvi" target="_blank">Krina Kalpesh Sanghvi</a></p>
+    </div>
+  </div>
+
+  <div id="page-2" class="page">
+    <div id="dur-flag"></div>
+
+    <div class="card">
+      <div class="card-label">Your scoring prompt — ready to copy</div>
+      <div class="prompt-wrap">
+        <div class="prompt-box" id="prompt-output"></div>
+      </div>
+      <button class="copy-btn" id="copy-btn" onclick="copyPrompt()">Copy prompt</button>
+      <div style="font-size:12px;color:var(--grey);margin-top:6px;text-align:center;">Click Copy, then open your AI tool below and paste</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="margin-bottom:8px;">Open your AI tool &amp; paste</div>
+      <div class="tool-grid">
+        <a class="tool-btn" href="https://claude.ai" target="_blank">
+          <div class="t-icon">🤖</div><div class="t-name">Claude</div><div class="t-sub">by Anthropic</div>
+        </a>
+        <a class="tool-btn" href="https://chat.openai.com" target="_blank">
+          <div class="t-icon">💬</div><div class="t-name">ChatGPT</div><div class="t-sub">by OpenAI</div>
+        </a>
+        <a class="tool-btn" href="https://gemini.google.com" target="_blank">
+          <div class="t-icon">✨</div><div class="t-name">Gemini</div><div class="t-sub">by Google</div>
+        </a>
+      </div>
+      <div style="font-size:12px;color:var(--grey);background:var(--stone);border-radius:8px;padding:9px 12px;line-height:1.6;">
+        <b style="color:var(--ink);">Tip:</b> Claude tends to give the most structured, coach-like feedback for speeches. All three are free with a basic account.
+      </div>
+    </div>
+
+    <div class="card" style="background:var(--stone);border-style:dashed;border-color:var(--border);">
+      <div class="card-label">What to expect</div>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="fsn">1</div><div class="fst"><b>Paste and send</b> the prompt. The AI scores your speech across 15 dimensions.</div></div>
+        <div class="flow-step"><div class="fsn">2</div><div class="fst"><b>You'll receive</b> an overall score, a table with one-line rationale per dimension, and the 3 weakest areas highlighted.</div></div>
+        <div class="flow-step"><div class="fsn">3</div><div class="fst"><b>The AI will ask you</b> what to improve — reply and it gives targeted suggestions or rewrites your speech.</div></div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">Overall score /10</span><span class="tag">9 core dimensions</span>
+        <span class="tag">6 SUCCES scores</span><span class="tag">Rationale per score</span>
+        <span class="tag">3 lowest highlighted</span><span class="tag">Improvement suggestions</span>
+      </div>
+    </div>
+
+    <button class="btn-outline" onclick="goBack()">← Edit my speech details</button>
+
+    <div class="cta-card">
+      <div class="cta-av">K</div>
+      <div class="cta-body">
+        <p>AI scores are a great start — but a real coach sees what the data misses. <b>Krina works with speakers on story, structure and stage presence.</b> Drop her a message anytime.</p>
+        <a class="cta-link" href="https://www.linkedin.com/in/krina-kalpesh-sanghvi" target="_blank">Connect with Krina on LinkedIn ↗</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-logo"><span class="fk">kan</span><span class="fg">.grow</span></div>
+      <p>Created by <a href="https://www.linkedin.com/in/krina-kalpesh-sanghvi" target="_blank">Krina Kalpesh Sanghvi</a></p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function wc(){
+  const t=document.getElementById('txt').value.trim();
+  const w=t?t.split(/\s+/).length:0;
+  const m=Math.round(w/130);
+  const tgt=parseInt(document.getElementById('dur').value)||0;
+  const el=document.getElementById('wcl');
+  let msg=w+' words · ~'+m+' min estimated';
+  el.className='wc';
+  if(tgt>0){const d=m-tgt;if(Math.abs(d)<=1){el.className='wc ok';msg+=' · On target ✓';}else if(d>0){el.className='wc warn';msg+=' · ~'+d+' min over target';}else{el.className='wc warn';msg+=' · ~'+Math.abs(d)+' min under target';}}
+  el.textContent=msg;
+}
+function setPill(n){for(let i=1;i<=4;i++){const p=document.getElementById('pill-'+i);p.className='step-pill'+(i<n?' done':i===n?' active':'');}}
+function showPage(id,pill){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');setPill(pill);}
+function goBack(){showPage(1,1);}
+function generate(){
+  const speech=document.getElementById('txt').value.trim();
+  const stype=document.getElementById('stype').value;
+  const dur=document.getElementById('dur').value;
+  const aud=document.getElementById('aud').value.trim();
+  const pur=document.getElementById('pur').value.trim();
+  const ton=document.getElementById('ton').value.trim();
+  if(!speech){alert('Please paste your speech first.');return;}
+  if(!stype){alert('Please select a speech type.');return;}
+  const w=speech.split(/\s+/).length;
+  const m=Math.round(w/130);
+  let flag='';
+  if(dur){const d=m-parseInt(dur);if(d>1)flag=`<div class="warn-box">Your speech runs ~${d} min over your ${dur}-min target (${w} words). Consider trimming before scoring.</div>`;else if(d<-1)flag=`<div class="warn-box">Your speech is ~${Math.abs(d)} min under your ${dur}-min target. Consider expanding.</div>`;}
+  document.getElementById('dur-flag').innerHTML=flag;
+  const prompt=`You are a professional speech coach. Score the speech below across 15 dimensions. For each dimension give:
+- A score out of 10
+- One rationale sentence (under 12 words)
+
+Then highlight the 3 lowest-scoring dimensions.
+
+Finally, ask the speaker: "Which of these would you like to improve? Or would you like a full rewrite? Or is there something else you're looking for?"
+
+---
+SPEECH DETAILS
+Type: ${stype}
+Audience: ${aud||'Not specified'}
+Purpose: ${pur||'Not specified'}
+Tone: ${ton||'Not specified'}
+Target duration: ${dur?dur+' min':'Not specified'} | Estimated: ~${m} min (${w} words at 130 wpm)
+
+---
+SPEECH
+${speech}
+
+---
+SCORE THESE 9 CORE DIMENSIONS:
+1. Language — clarity, word choice, accessibility
+2. Structure — opening, body, conclusion logic
+3. Rhythm & flow — sentence variety, pacing, transitions
+4. Authenticity — personal voice and genuine ownership
+5. Audience fit — relevance and resonance for this specific audience
+6. Purpose clarity — how sharply the core message lands
+7. Opening hook — does it arrest attention immediately?
+8. Closing impact — does it leave the audience with something?
+9. Tone consistency — does the tone hold throughout?
+
+SCORE THESE 6 SUCCES FRAMEWORK DIMENSIONS:
+10. Simple — one clear core idea
+11. Unexpected — surprises, pattern breaks, subverted expectations
+12. Concrete — specific names, numbers, scenes vs abstract claims
+13. Credible — evidence, personal story, third-party proof
+14. Emotional — does it move the audience?
+15. Stories — story quality, structure and memorability
+
+Format your response as:
+- Overall score /10
+- A clean table: Dimension | Score | Rationale
+- The 3 lowest scores clearly highlighted
+- Then ask the improvement question above`;
+  document.getElementById('prompt-output').textContent=prompt;
+  document.getElementById('copy-btn').textContent='Copy prompt';
+  document.getElementById('copy-btn').className='copy-btn';
+  showPage(2,2);
+}
+function copyPrompt(){
+  navigator.clipboard.writeText(document.getElementById('prompt-output').textContent).then(()=>{
+    const b=document.getElementById('copy-btn');b.textContent='Copied!';b.className='copy-btn copied';
+    setTimeout(()=>{b.textContent='Copy prompt';b.className='copy-btn';},2500);
+  });
+}
+</script>
