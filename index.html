@@ -112,8 +112,6 @@ textarea{resize:vertical;min-height:148px;line-height:1.65;}
   <div class="sbar">
     <div class="sp active" id="pill-1">1 · Your speech</div>
     <div class="sp" id="pill-2">2 · Get prompt</div>
-    <div class="sp" id="pill-3">3 · Paste &amp; score</div>
-    <div class="sp" id="pill-4">4 · Improve</div>
   </div>
 
   <div id="page-1" class="page active">
@@ -299,7 +297,7 @@ async function handleFile(file){
 }
 
 function setPill(n){
-  for(let i=1;i<=4;i++){
+  for(let i=1;i<=2;i++){
     const p=document.getElementById('pill-'+i);
     p.className='sp'+(i<n?' done':i===n?' active':'');
   }
