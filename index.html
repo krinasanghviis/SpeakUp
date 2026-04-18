@@ -1,120 +1,132 @@
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{--ink:#1A1A1A;--stone:#F7F6F3;--em:#37996B;--em-light:#E8F5EE;--em-mid:#9FE1CB;--grey:#6B6B6B;--border:#E9E9E7;--white:#fff;--warn:#BA7517;--warn-bg:#FAEEDA;}
+:root{--ink:#1A1A1A;--stone:#F7F6F3;--em:#37996B;--eml:#E8F5EE;--emm:#9FE1CB;--grey:#6B6B6B;--bdr:#E9E9E7;--wh:#fff;--warn:#BA7517;--warnbg:#FAEEDA;}
 body{font-family:'DM Sans',Arial,sans-serif;color:var(--ink);background:transparent;}
 .wrap{max-width:720px;margin:0 auto;padding:0 1rem 3rem;}
 
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 0 1.1rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
-.kangrow{display:flex;flex-direction:column;gap:2px;}
-.kangrow-logo{display:flex;align-items:baseline;gap:0px;}
-.kangrow-logo .k{font-family:'DM Serif Display',Georgia,serif;font-size:28px;font-weight:400;color:var(--ink);line-height:1;}
-.kangrow-logo .g{font-family:'DM Serif Display',Georgia,serif;font-size:28px;font-weight:400;color:var(--em);line-height:1;}
-.kangrow-tag{font-size:10px;color:var(--grey);letter-spacing:0.08em;text-transform:uppercase;}
-.speakup-badge{text-align:right;}
-.speakup-badge .name{font-size:20px;font-weight:600;color:var(--ink);letter-spacing:-0.4px;line-height:1;}
-.speakup-badge .sub{font-size:11px;color:var(--grey);margin-top:3px;}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 0 1rem;border-bottom:1px solid var(--bdr);margin-bottom:1.4rem;}
+.kglogo{display:flex;flex-direction:column;gap:2px;}
+.kglogo-row{display:flex;align-items:baseline;}
+.kglogo-row .k{font-family:'DM Serif Display',Georgia,serif;font-size:27px;color:var(--ink);line-height:1;}
+.kglogo-row .g{font-family:'DM Serif Display',Georgia,serif;font-size:27px;color:var(--em);line-height:1;}
+.kglogo-tag{font-size:10px;color:var(--grey);letter-spacing:0.08em;text-transform:uppercase;}
+.subadge{text-align:right;}
+.subadge .nm{font-size:19px;font-weight:600;color:var(--ink);letter-spacing:-0.3px;line-height:1;}
+.subadge .sb{font-size:11px;color:var(--grey);margin-top:3px;}
 
-.steps-bar{display:flex;margin-bottom:1.5rem;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
-.step-pill{flex:1;padding:9px 4px;text-align:center;font-size:11px;font-weight:500;color:var(--grey);background:var(--stone);border-right:1px solid var(--border);transition:all 0.2s;}
-.step-pill:last-child{border-right:none;}
-.step-pill.active{background:var(--em);color:#fff;}
-.step-pill.done{background:var(--em-light);color:var(--em);}
+.sbar{display:flex;margin-bottom:1.4rem;border:1px solid var(--bdr);border-radius:10px;overflow:hidden;}
+.sp{flex:1;padding:8px 4px;text-align:center;font-size:11px;font-weight:500;color:var(--grey);background:var(--stone);border-right:1px solid var(--bdr);transition:all 0.2s;}
+.sp:last-child{border-right:none;}
+.sp.active{background:var(--em);color:#fff;}
+.sp.done{background:var(--eml);color:var(--em);}
 
-.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.25rem;margin-bottom:1rem;}
-.card-label{font-size:10px;font-weight:600;color:var(--grey);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;}
+.card{background:var(--wh);border:1px solid var(--bdr);border-radius:14px;padding:1.2rem;margin-bottom:1rem;}
+.clabel{font-size:10px;font-weight:600;color:var(--grey);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;}
 label{font-size:13px;color:var(--grey);display:block;margin-bottom:5px;}
-input,select,textarea{width:100%;font-size:14px;padding:9px 12px;border:1px solid var(--border);border-radius:8px;background:var(--white);color:var(--ink);font-family:'DM Sans',Arial,sans-serif;outline:none;transition:border 0.15s;}
+input,select,textarea{width:100%;font-size:14px;padding:9px 12px;border:1px solid var(--bdr);border-radius:8px;background:var(--wh);color:var(--ink);font-family:'DM Sans',Arial,sans-serif;outline:none;transition:border 0.15s;}
 input:focus,select:focus,textarea:focus{border-color:var(--em);}
-textarea{resize:vertical;min-height:150px;line-height:1.65;}
+textarea{resize:vertical;min-height:148px;line-height:1.65;}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
 .g1{margin-bottom:12px;}
 .wc{font-size:12px;color:var(--grey);margin-top:5px;}
 .wc.warn{color:var(--warn);}
 .wc.ok{color:var(--em);}
 
-.hint-box{background:var(--em-light);border-left:3px solid var(--em);border-radius:0 8px 8px 0;padding:10px 14px;font-size:13px;color:#0F6E56;line-height:1.6;margin-bottom:1rem;}
-.warn-box{background:var(--warn-bg);border-left:3px solid var(--warn);border-radius:0 8px 8px 0;padding:10px 14px;font-size:13px;color:#85500B;line-height:1.6;margin-bottom:1rem;}
+.hint{background:var(--eml);border-left:3px solid var(--em);border-radius:0 8px 8px 0;padding:10px 14px;font-size:13px;color:#0F6E56;line-height:1.6;margin-bottom:1rem;}
+.warnbox{background:var(--warnbg);border-left:3px solid var(--warn);border-radius:0 8px 8px 0;padding:10px 14px;font-size:13px;color:#85500B;line-height:1.6;margin-bottom:1rem;}
 
-.btn-primary{background:var(--em);color:#fff;border:none;border-radius:9px;padding:12px 0;font-size:14px;font-weight:600;cursor:pointer;width:100%;font-family:'DM Sans',Arial,sans-serif;transition:background 0.15s;margin-top:4px;}
-.btn-primary:hover{background:#2e7d59;}
-.btn-outline{background:var(--white);color:var(--ink);border:1px solid var(--border);border-radius:9px;padding:10px 0;font-size:13px;font-weight:500;cursor:pointer;width:100%;font-family:'DM Sans',Arial,sans-serif;transition:border 0.15s;margin-top:8px;}
-.btn-outline:hover{border-color:var(--em);color:var(--em);}
+.file-drop{border:1.5px dashed var(--bdr);border-radius:10px;padding:18px;text-align:center;cursor:pointer;transition:border 0.15s;background:var(--stone);position:relative;}
+.file-drop:hover{border-color:var(--em);}
+.file-drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.file-drop .fd-icon{font-size:22px;margin-bottom:6px;}
+.file-drop .fd-text{font-size:13px;color:var(--grey);}
+.file-drop .fd-sub{font-size:11px;color:#aaa;margin-top:3px;}
+.file-status{font-size:12px;margin-top:8px;padding:7px 12px;border-radius:7px;display:none;}
+.file-status.ok{background:var(--eml);color:#0F6E56;display:block;}
+.file-status.err{background:#FCEBEB;color:#A32D2D;display:block;}
+.file-status.loading{background:var(--stone);color:var(--grey);display:block;}
+
+.btn{background:var(--em);color:#fff;border:none;border-radius:9px;padding:12px 0;font-size:14px;font-weight:600;cursor:pointer;width:100%;font-family:'DM Sans',Arial,sans-serif;transition:background 0.15s;margin-top:4px;}
+.btn:hover{background:#2e7d59;}
+.btn-out{background:var(--wh);color:var(--ink);border:1px solid var(--bdr);border-radius:9px;padding:10px 0;font-size:13px;font-weight:500;cursor:pointer;width:100%;font-family:'DM Sans',Arial,sans-serif;transition:border 0.15s;margin-top:8px;}
+.btn-out:hover{border-color:var(--em);color:var(--em);}
 
 .page{display:none;}
 .page.active{display:block;}
 
-.prompt-wrap{position:relative;margin-bottom:8px;}
-.prompt-box{background:var(--stone);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem 1rem;font-size:12.5px;line-height:1.75;color:var(--ink);font-family:'DM Sans',Arial,sans-serif;white-space:pre-wrap;max-height:280px;overflow-y:auto;}
-.copy-btn{display:block;width:100%;margin-top:8px;background:var(--em);color:#fff;border:none;border-radius:8px;padding:10px 0;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',Arial,sans-serif;transition:background 0.15s;}
+.prompt-box{background:var(--stone);border:1px solid var(--bdr);border-radius:10px;padding:1rem 1.2rem;font-size:12.5px;line-height:1.75;color:var(--ink);font-family:'DM Sans',Arial,sans-serif;white-space:pre-wrap;max-height:280px;overflow-y:auto;margin-bottom:8px;}
+.copy-btn{display:block;width:100%;background:var(--em);color:#fff;border:none;border-radius:8px;padding:10px 0;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',Arial,sans-serif;transition:background 0.15s;}
 .copy-btn:hover{background:#2e7d59;}
 .copy-btn.copied{background:#0F6E56;}
 
 .tool-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:10px 0 12px;}
-.tool-btn{border:1px solid var(--border);border-radius:10px;padding:14px 8px;text-align:center;cursor:pointer;background:var(--white);transition:all 0.15s;text-decoration:none;display:block;}
+.tool-btn{border:1px solid var(--bdr);border-radius:10px;padding:14px 8px;text-align:center;cursor:pointer;background:var(--wh);transition:all 0.15s;text-decoration:none;display:block;}
 .tool-btn:hover{border-color:var(--em);transform:translateY(-2px);}
-.tool-btn .t-icon{font-size:20px;margin-bottom:4px;}
-.tool-btn .t-name{font-size:13px;font-weight:600;color:var(--ink);}
-.tool-btn .t-sub{font-size:11px;color:var(--grey);margin-top:1px;}
+.tool-btn .ti{font-size:20px;margin-bottom:4px;}
+.tool-btn .tn{font-size:13px;font-weight:600;color:var(--ink);}
+.tool-btn .ts{font-size:11px;color:var(--grey);margin-top:1px;}
 
-.flow-steps{margin-bottom:1rem;}
-.flow-step{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px;}
+.fstep{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px;}
 .fsn{min-width:24px;height:24px;border-radius:50%;background:var(--em);color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
 .fst{font-size:13px;line-height:1.6;color:var(--ink);}
 .fst span{color:var(--grey);}
 
 .tag-row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0;}
-.tag{font-size:11px;background:var(--em-light);color:var(--em);padding:3px 9px;border-radius:20px;font-weight:500;}
+.tag{font-size:11px;background:var(--eml);color:var(--em);padding:3px 9px;border-radius:20px;font-weight:500;}
 
-.cta-card{background:var(--em-light);border:1px solid var(--em-mid);border-radius:14px;padding:1.1rem 1.25rem;margin-top:1.25rem;display:flex;gap:14px;align-items:flex-start;}
+.cta-card{background:var(--eml);border:1px solid var(--emm);border-radius:14px;padding:1.1rem 1.25rem;margin-top:1.25rem;display:flex;gap:14px;align-items:flex-start;}
 .cta-av{width:44px;height:44px;border-radius:50%;background:var(--em);color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'DM Serif Display',serif;}
 .cta-body p{font-size:13px;line-height:1.65;color:#0F6E56;}
-.cta-link{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:12px;font-weight:600;color:var(--em);text-decoration:none;border-bottom:1px solid var(--em-mid);padding-bottom:1px;}
+.cta-link{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:12px;font-weight:600;color:var(--em);text-decoration:none;border-bottom:1px solid var(--emm);padding-bottom:1px;}
 .cta-link:hover{color:#0F6E56;}
 
-.footer{text-align:center;margin-top:2rem;padding-top:1.25rem;border-top:1px solid var(--border);}
+.footer{text-align:center;margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--bdr);}
 .footer-logo{display:inline-flex;align-items:baseline;}
 .footer-logo .fk{font-family:'DM Serif Display',Georgia,serif;font-size:14px;color:var(--ink);}
 .footer-logo .fg{font-family:'DM Serif Display',Georgia,serif;font-size:14px;color:var(--em);}
 .footer p{font-size:11px;color:#c0bfbc;margin-top:3px;}
-.footer a{color:var(--em-mid);text-decoration:none;}
+.footer a{color:var(--emm);text-decoration:none;}
 .footer a:hover{color:var(--em);}
 
-@media(max-width:500px){.g2,.tool-grid{grid-template-columns:1fr;}.topbar{flex-direction:column;align-items:flex-start;gap:8px;}.speakup-badge{text-align:left;}}
+.req-star{color:var(--em);margin-left:2px;}
+@media(max-width:500px){.g2,.tool-grid{grid-template-columns:1fr;}.topbar{flex-wrap:wrap;gap:8px;}.subadge{text-align:left;}}
 </style>
 
-<div class="wrap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
+<div class="wrap">
   <div class="topbar">
-    <div class="kangrow">
-      <div class="kangrow-logo"><span class="k">kan</span><span class="g">.grow</span></div>
-      <div class="kangrow-tag">Build systems. Buy back time.</div>
+    <div class="kglogo">
+      <div class="kglogo-row"><span class="k">kan</span><span class="g">.grow</span></div>
+      <div class="kglogo-tag">Build systems. Buy back time.</div>
     </div>
-    <div class="speakup-badge">
-      <div class="name">SpeakUp</div>
-      <div class="sub">Speech scoring tool</div>
+    <div class="subadge">
+      <div class="nm">SpeakUp</div>
+      <div class="sb">Speech scoring tool</div>
     </div>
   </div>
 
-  <div class="steps-bar">
-    <div class="step-pill active" id="pill-1">1 · Your speech</div>
-    <div class="step-pill" id="pill-2">2 · Get prompt</div>
-    <div class="step-pill" id="pill-3">3 · Paste & score</div>
-    <div class="step-pill" id="pill-4">4 · Improve</div>
+  <div class="sbar">
+    <div class="sp active" id="pill-1">1 · Your speech</div>
+    <div class="sp" id="pill-2">2 · Get prompt</div>
+    <div class="sp" id="pill-3">3 · Paste &amp; score</div>
+    <div class="sp" id="pill-4">4 · Improve</div>
   </div>
 
   <div id="page-1" class="page active">
-    <div class="hint-box"><b>How SpeakUp works:</b> Fill in your speech and a few details below. We'll generate a ready-made scoring prompt — you paste it into Claude, ChatGPT or Gemini and get scores across 15 dimensions, instantly.</div>
+    <div class="hint"><b>How SpeakUp works:</b> Fill in your speech and context below. We generate a ready-made scoring prompt — paste it into Claude, ChatGPT or Gemini and get scores across 16 dimensions, a personalised summary, and improvement suggestions.</div>
 
     <div class="card">
-      <div class="card-label">Your speech</div>
+      <div class="clabel">Your speech<span class="req-star">*</span></div>
       <textarea id="txt" placeholder="Paste your full speech here..." oninput="wc()"></textarea>
       <div class="wc" id="wcl">0 words · 0 min estimated</div>
     </div>
 
     <div class="card">
-      <div class="card-label">Context</div>
+      <div class="clabel">Context<span class="req-star">*</span></div>
       <div class="g2">
         <div>
           <label>Speech type</label>
@@ -132,21 +144,36 @@ textarea{resize:vertical;min-height:150px;line-height:1.65;}
         </div>
       </div>
       <div class="g2">
-        <div><label>Audience</label><input id="aud" placeholder="e.g. startup founders" /></div>
-        <div><label>Purpose</label><input id="pur" placeholder="e.g. inspire, persuade" /></div>
+        <div><label>Audience</label><input id="aud" placeholder="e.g. startup founders, students" /></div>
+        <div><label>Purpose</label><input id="pur" placeholder="e.g. inspire, persuade, inform" /></div>
       </div>
       <div class="g1">
         <label>Tone <span style="font-size:11px;color:#aaa;">— describe freely</span></label>
-        <input id="ton" placeholder="e.g. storytelling, humorous, motivational..." />
+        <input id="ton" placeholder="e.g. storytelling, humorous, motivational, inspiring..." />
+      </div>
+      <div>
+        <label>Core message <span style="font-size:11px;color:#aaa;">— the one idea you want the audience to leave with</span></label>
+        <input id="coremsg" placeholder="e.g. Overthinking is fear disguised as preparation." />
       </div>
     </div>
 
-    <button class="btn-primary" onclick="generate()">Generate my scoring prompt →</button>
+    <div class="card">
+      <div class="clabel">Speech objectives file <span style="font-size:10px;color:#aaa;font-weight:400;text-transform:none;letter-spacing:0;">(optional — e.g. Toastmasters manual)</span></div>
+      <div class="file-drop" id="drop-zone">
+        <input type="file" id="obj-file" accept=".pdf,.docx" onchange="handleFile(this.files[0])" />
+        <div class="fd-icon">📄</div>
+        <div class="fd-text">Click to upload or drag &amp; drop</div>
+        <div class="fd-sub">PDF or Word (.docx) · Speech objectives, evaluation criteria, manual pages</div>
+      </div>
+      <div class="file-status" id="file-status"></div>
+    </div>
+
+    <button class="btn" onclick="generate()">Generate my scoring prompt →</button>
 
     <div class="cta-card">
       <div class="cta-av">K</div>
       <div class="cta-body">
-        <p>Want a real human to review your speech? <b>Krina helps speakers find their story, sharpen their structure and own the stage.</b> Reach out — no pitch, just a conversation.</p>
+        <p>Want a real human to look at your speech? <b>Krina helps speakers find their story, sharpen structure and own the stage.</b> Reach out — no pitch, just a conversation.</p>
         <a class="cta-link" href="https://www.linkedin.com/in/krina-kalpesh-sanghvi" target="_blank">Connect with Krina on LinkedIn ↗</a>
       </div>
     </div>
@@ -161,52 +188,52 @@ textarea{resize:vertical;min-height:150px;line-height:1.65;}
     <div id="dur-flag"></div>
 
     <div class="card">
-      <div class="card-label">Your scoring prompt — ready to copy</div>
-      <div class="prompt-wrap">
-        <div class="prompt-box" id="prompt-output"></div>
-      </div>
+      <div class="clabel">Your scoring prompt — ready to copy</div>
+      <div class="prompt-box" id="prompt-output"></div>
       <button class="copy-btn" id="copy-btn" onclick="copyPrompt()">Copy prompt</button>
-      <div style="font-size:12px;color:var(--grey);margin-top:6px;text-align:center;">Click Copy, then open your AI tool below and paste</div>
+      <div style="font-size:12px;color:var(--grey);margin-top:7px;text-align:center;">Click Copy → open your AI tool below → paste &amp; send</div>
     </div>
 
     <div class="card">
-      <div class="card-label" style="margin-bottom:8px;">Open your AI tool &amp; paste</div>
+      <div class="clabel" style="margin-bottom:8px;">Step 2 — Open your AI tool &amp; paste</div>
       <div class="tool-grid">
         <a class="tool-btn" href="https://claude.ai" target="_blank">
-          <div class="t-icon">🤖</div><div class="t-name">Claude</div><div class="t-sub">by Anthropic</div>
+          <div class="ti">🤖</div><div class="tn">Claude</div><div class="ts">by Anthropic</div>
         </a>
         <a class="tool-btn" href="https://chat.openai.com" target="_blank">
-          <div class="t-icon">💬</div><div class="t-name">ChatGPT</div><div class="t-sub">by OpenAI</div>
+          <div class="ti">💬</div><div class="tn">ChatGPT</div><div class="ts">by OpenAI</div>
         </a>
         <a class="tool-btn" href="https://gemini.google.com" target="_blank">
-          <div class="t-icon">✨</div><div class="t-name">Gemini</div><div class="t-sub">by Google</div>
+          <div class="ti">✨</div><div class="tn">Gemini</div><div class="ts">by Google</div>
         </a>
       </div>
       <div style="font-size:12px;color:var(--grey);background:var(--stone);border-radius:8px;padding:9px 12px;line-height:1.6;">
-        <b style="color:var(--ink);">Tip:</b> Claude tends to give the most structured, coach-like feedback for speeches. All three are free with a basic account.
+        <b style="color:var(--ink);">Tip:</b> Claude gives the most structured, coach-like feedback for speeches. All three are free with a basic account.
       </div>
     </div>
 
-    <div class="card" style="background:var(--stone);border-style:dashed;border-color:var(--border);">
-      <div class="card-label">What to expect</div>
-      <div class="flow-steps">
-        <div class="flow-step"><div class="fsn">1</div><div class="fst"><b>Paste and send</b> the prompt. The AI scores your speech across 15 dimensions.</div></div>
-        <div class="flow-step"><div class="fsn">2</div><div class="fst"><b>You'll receive</b> an overall score, a table with one-line rationale per dimension, and the 3 weakest areas highlighted.</div></div>
-        <div class="flow-step"><div class="fsn">3</div><div class="fst"><b>The AI will ask you</b> what to improve — reply and it gives targeted suggestions or rewrites your speech.</div></div>
+    <div class="card" style="background:var(--stone);border-style:dashed;">
+      <div class="clabel">Step 3 — What to expect from the AI</div>
+      <div style="margin-bottom:10px;">
+        <div class="fstep"><div class="fsn">1</div><div class="fst"><b>Personalised summary first.</b> <span>The AI opens with an honest, warm paragraph about your specific speech — not generic feedback.</span></div></div>
+        <div class="fstep"><div class="fsn">2</div><div class="fst"><b>16-dimension score table.</b> <span>Each with a score /10 and one-line rationale. Anchored to your core message throughout.</span></div></div>
+        <div class="fstep"><div class="fsn">3</div><div class="fst"><b>3 weakest areas highlighted.</b> <span>So you know exactly where to focus.</span></div></div>
+        <div class="fstep"><div class="fsn">4</div><div class="fst"><b>The AI will ask you what to improve.</b> <span>Reply in the same chat — it'll give targeted suggestions or rewrite your speech on request.</span></div></div>
       </div>
       <div class="tag-row">
-        <span class="tag">Overall score /10</span><span class="tag">9 core dimensions</span>
-        <span class="tag">6 SUCCES scores</span><span class="tag">Rationale per score</span>
-        <span class="tag">3 lowest highlighted</span><span class="tag">Improvement suggestions</span>
+        <span class="tag">Personal summary</span><span class="tag">Overall /10</span>
+        <span class="tag">9 core dimensions</span><span class="tag">6 SUCCES scores</span>
+        <span class="tag">Humour score</span><span class="tag">3 lowest highlighted</span>
+        <span class="tag">Core message check</span><span class="tag">Objectives match</span>
       </div>
     </div>
 
-    <button class="btn-outline" onclick="goBack()">← Edit my speech details</button>
+    <button class="btn-out" onclick="goBack()">← Edit my speech details</button>
 
     <div class="cta-card">
       <div class="cta-av">K</div>
       <div class="cta-body">
-        <p>AI scores are a great start — but a real coach sees what the data misses. <b>Krina works with speakers on story, structure and stage presence.</b> Drop her a message anytime.</p>
+        <p>AI scores are a great start — but a real coach sees what data misses. <b>Krina works with speakers on story, structure and stage presence.</b> Drop her a message anytime.</p>
         <a class="cta-link" href="https://www.linkedin.com/in/krina-kalpesh-sanghvi" target="_blank">Connect with Krina on LinkedIn ↗</a>
       </div>
     </div>
@@ -216,10 +243,13 @@ textarea{resize:vertical;min-height:150px;line-height:1.65;}
       <p>Created by <a href="https://www.linkedin.com/in/krina-kalpesh-sanghvi" target="_blank">Krina Kalpesh Sanghvi</a></p>
     </div>
   </div>
-
 </div>
 
 <script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+let objText = '';
+
 function wc(){
   const t=document.getElementById('txt').value.trim();
   const w=t?t.split(/\s+/).length:0;
@@ -231,9 +261,59 @@ function wc(){
   if(tgt>0){const d=m-tgt;if(Math.abs(d)<=1){el.className='wc ok';msg+=' · On target ✓';}else if(d>0){el.className='wc warn';msg+=' · ~'+d+' min over target';}else{el.className='wc warn';msg+=' · ~'+Math.abs(d)+' min under target';}}
   el.textContent=msg;
 }
-function setPill(n){for(let i=1;i<=4;i++){const p=document.getElementById('pill-'+i);p.className='step-pill'+(i<n?' done':i===n?' active':'');}}
-function showPage(id,pill){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');setPill(pill);}
+
+function setStatus(msg, type){
+  const el=document.getElementById('file-status');
+  el.textContent=msg; el.className='file-status '+type;
+}
+
+async function handleFile(file){
+  if(!file) return;
+  const name=file.name.toLowerCase();
+  setStatus('Reading file...','loading');
+  objText='';
+  try{
+    if(name.endsWith('.docx')){
+      const buf=await file.arrayBuffer();
+      const result=await mammoth.extractRawText({arrayBuffer:buf});
+      objText=result.value.trim();
+      setStatus('✓ Loaded: '+file.name+' ('+objText.split(/\s+/).length+' words extracted)','ok');
+    } else if(name.endsWith('.pdf')){
+      const buf=await file.arrayBuffer();
+      const pdf=await pdfjsLib.getDocument({data:buf}).promise;
+      let text='';
+      for(let i=1;i<=pdf.numPages;i++){
+        const page=await pdf.getPage(i);
+        const content=await page.getTextContent();
+        text+=content.items.map(s=>s.str).join(' ')+'\n';
+      }
+      objText=text.trim();
+      setStatus('✓ Loaded: '+file.name+' ('+objText.split(/\s+/).length+' words extracted)','ok');
+    } else {
+      setStatus('Please upload a PDF or .docx file only.','err');
+    }
+  } catch(e){
+    setStatus('Could not read file. Try a different PDF or Word document.','err');
+    objText='';
+  }
+}
+
+function setPill(n){
+  for(let i=1;i<=4;i++){
+    const p=document.getElementById('pill-'+i);
+    p.className='sp'+(i<n?' done':i===n?' active':'');
+  }
+}
+
+function showPage(id,pill){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  setPill(pill);
+  window.scrollTo(0,0);
+}
+
 function goBack(){showPage(1,1);}
+
 function generate(){
   const speech=document.getElementById('txt').value.trim();
   const stype=document.getElementById('stype').value;
@@ -241,46 +321,64 @@ function generate(){
   const aud=document.getElementById('aud').value.trim();
   const pur=document.getElementById('pur').value.trim();
   const ton=document.getElementById('ton').value.trim();
+  const core=document.getElementById('coremsg').value.trim();
+
   if(!speech){alert('Please paste your speech first.');return;}
   if(!stype){alert('Please select a speech type.');return;}
+  if(!core){alert('Please enter your core message — the one idea you want the audience to leave with.');return;}
+
   const w=speech.split(/\s+/).length;
   const m=Math.round(w/130);
+
   let flag='';
-  if(dur){const d=m-parseInt(dur);if(d>1)flag=`<div class="warn-box">Your speech runs ~${d} min over your ${dur}-min target (${w} words). Consider trimming before scoring.</div>`;else if(d<-1)flag=`<div class="warn-box">Your speech is ~${Math.abs(d)} min under your ${dur}-min target. Consider expanding.</div>`;}
+  if(dur){
+    const d=m-parseInt(dur);
+    if(d>1) flag=`<div class="warnbox">Your speech runs ~${d} min over your ${dur}-min target (${w} words). Consider trimming before scoring.</div>`;
+    else if(d<-1) flag=`<div class="warnbox">Your speech is ~${Math.abs(d)} min under your ${dur}-min target. Consider expanding.</div>`;
+  }
   document.getElementById('dur-flag').innerHTML=flag;
-  const prompt=`You are a professional speech coach. Score the speech below across 15 dimensions. For each dimension give:
-- A score out of 10
-- One rationale sentence (under 12 words)
 
-Then highlight the 3 lowest-scoring dimensions.
+  const objSection=objText
+    ? `\n---\nSPEECH OBJECTIVES (extracted from uploaded file)\n${objText.substring(0,2000)}\n\nUse these objectives to assess whether the speech meets its intended criteria. Include a brief "Objectives match" note in your summary.`
+    : '';
 
-Finally, ask the speaker: "Which of these would you like to improve? Or would you like a full rewrite? Or is there something else you're looking for?"
+  const prompt=`You are a warm but honest professional speech coach. A speaker has submitted their speech for scoring. Follow the format below exactly.
 
 ---
-SPEECH DETAILS
-Type: ${stype}
+SPEAKER CONTEXT
+Speech type: ${stype}
 Audience: ${aud||'Not specified'}
 Purpose: ${pur||'Not specified'}
 Tone: ${ton||'Not specified'}
 Target duration: ${dur?dur+' min':'Not specified'} | Estimated: ~${m} min (${w} words at 130 wpm)
-
+Core message (the ONE idea the speaker wants the audience to leave with): "${core}"
+${objSection}
 ---
 SPEECH
 ${speech}
 
 ---
-SCORE THESE 9 CORE DIMENSIONS:
+INSTRUCTIONS — follow this order exactly:
+
+PART 1 — PERSONALISED SUMMARY (before any scores)
+Write a short, warm, honest paragraph (4–6 sentences) addressed directly to the speaker. Reference their specific speech, story, characters or moments by name. Comment on how well the speech serves the audience and purpose. Note whether the core message ("${core}") lands clearly. If speech objectives were provided, briefly note how well the speech meets them. Be encouraging but truthful — do not be generic.
+
+PART 2 — SCORE TABLE
+Show a clean table with columns: # | Dimension | Score (/10) | Rationale (one sentence, under 12 words).
+Score ALL 16 dimensions below. Do not skip any.
+
+CORE DIMENSIONS (9):
 1. Language — clarity, word choice, accessibility
 2. Structure — opening, body, conclusion logic
 3. Rhythm & flow — sentence variety, pacing, transitions
 4. Authenticity — personal voice and genuine ownership
 5. Audience fit — relevance and resonance for this specific audience
-6. Purpose clarity — how sharply the core message lands
+6. Purpose clarity — how sharply the core message ("${core}") lands
 7. Opening hook — does it arrest attention immediately?
-8. Closing impact — does it leave the audience with something?
+8. Closing impact — does it leave the audience with something memorable?
 9. Tone consistency — does the tone hold throughout?
 
-SCORE THESE 6 SUCCES FRAMEWORK DIMENSIONS:
+SUCCES FRAMEWORK (6):
 10. Simple — one clear core idea
 11. Unexpected — surprises, pattern breaks, subverted expectations
 12. Concrete — specific names, numbers, scenes vs abstract claims
@@ -288,19 +386,30 @@ SCORE THESE 6 SUCCES FRAMEWORK DIMENSIONS:
 14. Emotional — does it move the audience?
 15. Stories — story quality, structure and memorability
 
-Format your response as:
-- Overall score /10
-- A clean table: Dimension | Score | Rationale
-- The 3 lowest scores clearly highlighted
-- Then ask the improvement question above`;
+HUMOUR (1):
+16. Humour — Score based on whether humour is present and effective. If humour is not part of the intended tone, say so in the rationale and score based on whether the speech wisely avoids it (high score) or accidentally undermines itself with unintended levity (low score).
+
+PART 3 — OVERALL SCORE
+One line: Overall score: X/10
+
+PART 4 — LOWEST 3 DIMENSIONS
+Clearly highlight the 3 lowest-scoring dimensions with a one-line note on why each matters.
+
+PART 5 — NEXT STEP QUESTION
+Ask: "Which of these would you like to improve? Or would you like a full rewrite to score better overall? Or is there something else you're looking for?"
+
+IMPORTANT: Keep all feedback anchored to the core message ("${core}") throughout. Do not deviate from it or reframe it unless the speaker explicitly asks you to.`;
+
   document.getElementById('prompt-output').textContent=prompt;
   document.getElementById('copy-btn').textContent='Copy prompt';
   document.getElementById('copy-btn').className='copy-btn';
   showPage(2,2);
 }
+
 function copyPrompt(){
   navigator.clipboard.writeText(document.getElementById('prompt-output').textContent).then(()=>{
-    const b=document.getElementById('copy-btn');b.textContent='Copied!';b.className='copy-btn copied';
+    const b=document.getElementById('copy-btn');
+    b.textContent='Copied!'; b.className='copy-btn copied';
     setTimeout(()=>{b.textContent='Copy prompt';b.className='copy-btn';},2500);
   });
 }
